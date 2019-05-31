@@ -9,11 +9,16 @@ export class AddTodo extends Component {
     }
     
 
+
+
     onSubmit = (e) => {
         e.preventDefault();
         this.props.addTodo(this.state.title);
         this.setState({ title: '' });
     };
+
+
+
 
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
@@ -27,15 +32,18 @@ export class AddTodo extends Component {
                         type = 'text' 
                         name = 'title' 
                         style = {{ flex: '10', padding: '5px' }}
-                        placeholder = 'Add Todo...'
+                        placeholder = 'Add...'
                         value = { this.state.title }
                         onChange = { this.onChange }
+                        onFocus = { (e) => e.target.placeholder = '' }
+                        onBlur = { (e) => e.target.placeholder = 'Add...' }
                     />
                     <input 
                         type = 'submit' 
                         value = 'Add'
                         className = 'btn'
                         style = {{ flex: '1' }}
+                        disabled = {this.state.title === ''}
                     />
                 </form>
             </div>
